@@ -1,15 +1,19 @@
 # LangGraph-Tutorials 🚀
 
-This repository contains LangGraph workflow examples using both OpenAI and Google Gemini (Generative AI). It includes everything from basic prompt chaining to an advanced chatbot with a Streamlit interface.
+This repository contains LangGraph workflow examples using both **OpenAI** and **Google Gemini (Generative AI)**. It includes everything from basic prompt chaining to an advanced chatbot with a Streamlit interface.
 
 ---
 
 ## 📁 Step 1: Create `.env` File
 
-Create a `.env` file in the root directory and add your Gemini API key:
-
+```env
+OPENAI_API_KEY=your-openai-api-key
+GEMINI_API_KEY=your-google-gemini-api-key
 ```
-GEMINI_API_KEY=your_actual_api_key_here
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
 ```
 
 ---
@@ -26,7 +30,7 @@ conda activate LangGraph-Tutorials
 ## 📦 Step 3: Install Dependencies
 
 ```bash
-pip install langgraph langchain langchain_openai python-dotenv streamlit
+pip install langgraph langchain langchain_openai python-dotenv streamlit langchain-google-genai
 ```
 
 If you're using **Google Gemini**:
@@ -35,9 +39,64 @@ If you're using **Google Gemini**:
 pip install google-generativeai
 ```
 
+☁️ **(Optional) Install Google Cloud SDK (for ADC)**  
+Only required if you're using Gemini via Google Cloud Console instead of API Key:
+
+```bash
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+gcloud auth application-default login
+```
+
 ---
 
-## 💬 Step 4: Run the Streamlit Chatbot App
+## 🧠 Step 4: Sample Code for OpenAI & Gemini (LangChain + SDK)
+
+### 🟦 OpenAI Example (LangChain)
+
+```python
+from langchain_openai import ChatOpenAI
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+llm = ChatOpenAI(model="gpt-4", api_key=os.getenv("OPENAI_API_KEY"))
+print(llm.invoke("Tell me a joke.").content)
+```
+
+### 🟨 Google Gemini Example (LangChain)
+
+```python
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+llm = ChatGoogleGenerativeAI(
+    model="gemini-pro",
+    google_api_key=os.getenv("GEMINI_API_KEY")
+)
+print(llm.invoke("Define AI in one line.").content)
+```
+
+### 🟨 Google Gemini Example (Native SDK)
+
+```python
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+model = genai.GenerativeModel("gemini-pro")
+response = model.generate_content("Define AI in one line.")
+print(response.text)
+```
+
+---
+
+## 💬 Step 5: Run the Streamlit Chatbot App
 
 ```bash
 cd Workflows/06_AdvancedChatbot/app
@@ -88,9 +147,9 @@ streamlit run streamlit_frontend.py
 ## 🧠 Tips
 
 - Use `.env` to securely manage API keys
-- Follow LangGraph documentation to create custom workflows
-- Easily switch between OpenAI and Gemini models in your code
+- Easily switch between OpenAI and Gemini in your code
+- Follow LangGraph docs to build custom multi-step workflows
 
 ---
 
-Happy Building! ⚙️
+Happy Building! ⚙️✨
