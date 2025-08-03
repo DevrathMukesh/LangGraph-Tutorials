@@ -4,3 +4,8 @@
 .vscode/
 __pycache__/
 *.pyc
+# Ignore all SSH private keys
+id_ed25519*
+*.pem
+*.key
+*.crt
