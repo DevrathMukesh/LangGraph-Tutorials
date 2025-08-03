@@ -1,25 +1,56 @@
-<!-- 📁 Step 1: Create .env File -->
-GEMINI_API_KEY=your_actual_api_key_here
+# LangGraph-Tutorials 🚀
 
-<!-- 🐍 Step 2: Create a New Conda Environment -->
+This repository contains LangGraph workflow examples using both OpenAI and Google Gemini (Generative AI). It includes everything from basic prompt chaining to an advanced chatbot with a Streamlit interface.
+
+---
+
+## 📁 Step 1: Create `.env` File
+
+Create a `.env` file in the root directory and add your Gemini API key:
+
+```
+GEMINI_API_KEY=your_actual_api_key_here
+```
+
+---
+
+## 🐍 Step 2: Set Up Conda Environment
+
+```bash
 conda create --name LangGraph-Tutorials python=3.13
 conda activate LangGraph-Tutorials
+```
 
-<!-- 📦 Step 3: Install Required Libraries -->
+---
+
+## 📦 Step 3: Install Dependencies
+
+```bash
 pip install langgraph langchain langchain_openai python-dotenv streamlit
+```
 
-<!-- If you're using Gemini (Google Generative AI), also install: -->
+If you're using **Google Gemini**:
+
+```bash
 pip install google-generativeai
+```
 
-<!-- 💬 Step 4: Run the Streamlit Chatbot App -->
+---
+
+## 💬 Step 4: Run the Streamlit Chatbot App
+
+```bash
 cd Workflows/06_AdvancedChatbot/app
 streamlit run streamlit_frontend.py
+```
 
+---
 
+## 🌴 Folder Structure
 
-<!-- 🌴: File Tree Overview -->
+```
 .
-├── ReadME.md
+├── README.md
 └── Workflows
     ├── 01_PromptChaining
     │   └── main.ipynb
@@ -43,8 +74,6 @@ streamlit run streamlit_frontend.py
     │   └── X_Post_Generator_OpenAI.ipynb
     ├── 06_AdvancedChatbot
     │   ├── app
-    │   │   ├── __pycache__
-    │   │   │   └── langgraph_backend.cpython-313.pyc
     │   │   ├── langgraph_backend.py
     │   │   └── streamlit_frontend.py
     │   ├── X_Post_Generator_Gemini.ipynb
@@ -52,5 +81,16 @@ streamlit run streamlit_frontend.py
     └── 07_Persistance
         ├── Persistence_Gemini.ipynb
         └── Persistence_OpenAI.ipynb
+```
 
-15 directories, 19 files
+---
+
+## 🧠 Tips
+
+- Use `.env` to securely manage API keys
+- Follow LangGraph documentation to create custom workflows
+- Easily switch between OpenAI and Gemini models in your code
+
+---
+
+Happy Building! ⚙️
